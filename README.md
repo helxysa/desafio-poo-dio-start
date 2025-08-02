@@ -1,4 +1,8 @@
-# Análise das Classes de Domínio - Herança e Polimorfismo
+# Desafio POO - Digital Innovation One
+
+Implementação progressiva de Programação Orientada a Objetos demonstrando os pilares fundamentais da POO através de branches estruturadas para aprendizado.
+
+> **A branch main contém a implementação final completa.**
 
 ## Branch Atual: classes-dominio
 
@@ -7,31 +11,77 @@ Esta branch demonstra a implementação completa das classes de domínio com foc
 **Status**: Concluído  
 **Próximo**: final
 
-## Estrutura das Classes de Domínio
+## Estrutura de Branches
 
-### 1. Classe Abstrata `Conteudo`
-```java
-public abstract class Conteudo {
-    protected static final double XP_PADRAO = 10;
-    private String titulo;
-    private String descricao;
-    
-    public abstract double calcularXp();
-}
+| Branch | Foco | Conceitos | Status |
+|--------|------|-----------|--------|
+| `abstracao-encapsulamento` | Fundamentos da POO | Encapsulamento de dados, abstração de comportamentos | ✅ |
+| `heranca-polimorfismo-part-1` | Hierarquia de classes | Reutilização de código através de herança | ✅ |
+| `heranca-polimorfismo-part-2` | Comportamentos específicos | Sobrescrita de métodos, polimorfismo | ✅ |
+| `classes-dominio` | **Integração do sistema** | **Composição, collections, relacionamentos entre objetos** | **🔄 Atual** |
+| `final` | Demonstração completa | Integração completa dos pilares da POO | ⏳ |
+
+## Características da Branch Atual
+
+### Classes de Domínio Implementadas
+
+| Classe | Tipo | Responsabilidade |
+|--------|------|------------------|
+| `Conteudo` | Abstrata | Define contrato base para todos os conteúdos |
+| `Curso` | Concreta | Implementa conteúdo com carga horária |
+| `Mentoria` | Concreta | Implementa conteúdo com data específica |
+| `Bootcamp` | Domínio | Gerencia coleção de conteúdos e desenvolvedores |
+| `Dev` | Domínio | Gerencia progresso individual e cálculo de XP |
+
+### Collections Utilizadas
+
+| Collection | Classe | Justificativa |
+|------------|--------|---------------|
+| `LinkedHashSet<Conteudo>` | Dev | Mantém ordem de inscrição, evita duplicatas |
+| `HashSet<Dev>` | Bootcamp | Performance O(1), ordem irrelevante |
+| `LinkedHashSet<Conteudo>` | Bootcamp | Preserva sequência de criação |
+
+### Funcionalidades Principais
+
+- **Inscrição Automática**: `inscreverBootcamp()` cria relacionamento bidirecional
+- **Progressão Linear**: `progedir()` move conteúdos seguindo ordem FIFO
+- **Cálculo de XP**: Polimorfismo para diferentes valores (Curso: 11 XP, Mentoria: 30 XP)
+- **Gerenciamento de Estado**: Separação entre conteúdos inscritos e concluídos
+
+## Início Rápido
+
+```bash
+# Navegar para esta branch
+git checkout classes-dominio
+
+# Compilar e executar
+cd src
+javac br/com/dio/desafio/dominio/*.java Main.java
+java Main
 ```
 
-**Características:**
-- **Abstração**: Define o contrato para todos os tipos de conteúdo
-- **Polimorfismo**: Método `calcularXp()` abstrato permite implementações específicas
-- **Encapsulamento**: Atributos privados com getters/setters
+## Estrutura do Projeto
 
-### 2. Classes Concretas: `Curso` e `Mentoria`
+```
+src/
+├── br/com/dio/desafio/dominio/
+│   ├── Conteudo.java         # Classe abstrata base
+│   ├── Curso.java            # Implementação concreta - XP: 11
+│   ├── Mentoria.java         # Implementação concreta - XP: 30  
+│   ├── Bootcamp.java         # Gerenciador de bootcamps
+│   └── Dev.java              # Gerenciador de desenvolvedores
+└── Main.java                 # Demonstração completa do sistema
+```
 
-**Curso:**
+## Conceitos POO Demonstrados
+
+### Herança e Polimorfismo
 ```java
+public abstract class Conteudo {
+    public abstract double calcularXp();
+}
+
 public class Curso extends Conteudo {
-    private int cargaHoraria;
-    
     @Override
     public double calcularXp() {
         return XP_PADRAO + 1; // 11 XP
@@ -39,32 +89,7 @@ public class Curso extends Conteudo {
 }
 ```
 
-**Mentoria:**
-```java
-public class Mentoria extends Conteudo {
-    private LocalDate data;
-    
-    @Override
-    public double calcularXp() {
-        return XP_PADRAO + 20d; // 30 XP
-    }
-}
-```
-
-**Herança e Polimorfismo:**
-- Ambas herdam de `Conteudo`
-- Implementam `calcularXp()` de forma específica
-- Mentoria vale mais XP (30) que Curso (11)
-
-### 3. Classe `Bootcamp`
-```java
-public class Bootcamp {
-    private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();
-}
-```
-
-### 4. Classe `Dev`
+### Composição e Collections
 ```java
 public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
@@ -72,47 +97,7 @@ public class Dev {
 }
 ```
 
----
-
-## Collections Utilizadas e Justificativas
-
-### 1. `LinkedHashSet<Conteudo>` em Dev
-```java
-private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
-```
-
-**Por que LinkedHashSet?**
-- **Sem duplicatas**: `Set` garante que não há conteúdos repetidos
-- **Ordem de inserção**: `LinkedHashSet` mantém a ordem em que os conteúdos foram adicionados
-- **Performance**: O(1) para operações de adição/remoção/busca
-- **Uso prático**: Importante manter ordem cronológica dos conteúdos inscritos
-
-### 2. `HashSet<Dev>` em Bootcamp
-```java
-private Set<Dev> devsInscritos = new HashSet<>();
-```
-
-**Por que HashSet?**
-- **Sem duplicatas**: Evita que o mesmo dev se inscreva múltiplas vezes
-- **Performance**: O(1) para operações principais
-- **Ordem não importa**: A ordem dos devs inscritos não é relevante
-
-### 3. `LinkedHashSet<Conteudo>` em Bootcamp
-```java
-private Set<Conteudo> conteudos = new LinkedHashSet<>();
-```
-
-**Por que LinkedHashSet?**
-- **Ordem de criação**: Mantém a ordem em que os conteúdos foram criados
-- **Sem duplicatas**: Evita conteúdos repetidos no bootcamp
-- **Sequência lógica**: Importante para a progressão do bootcamp
-
----
-
-## Lógica dos Métodos Principais
-
-### 1. `inscreverBootcamp(Bootcamp bootcamp)`
+### Relacionamentos Bidirecionais
 ```java
 public void inscreverBootcamp(Bootcamp bootcamp){
     this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -120,96 +105,19 @@ public void inscreverBootcamp(Bootcamp bootcamp){
 }
 ```
 
-**Lógica:**
-1. **Adiciona todos os conteúdos**: `addAll()` copia todos os conteúdos do bootcamp para a lista do dev
-2. **Registra o dev**: Adiciona o dev à lista de inscritos do bootcamp
-3. **Bidirecional**: Cria relacionamento duplo entre dev e bootcamp
+## Configuração de Desenvolvimento
 
-**Antes da implementação automática:**
-- Era necessário adicionar o dev manualmente ao bootcamp
-- Agora é automático, garantindo consistência
-
-### 2. `progedir()`
-```java
-public void progedir() {
-    Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-    if (conteudo.isPresent()) {
-        this.conteudosConcluidos.add(conteudo.get());
-        this.conteudosInscritos.remove(conteudo.get());
-    } else {
-        System.err.println("Voce nao esta matriculado em nenhum conteudo");
-    }
-}
-```
-
-**Lógica:**
-1. **Pega o primeiro**: `findFirst()` pega o primeiro conteúdo da lista (ordem de inscrição)
-2. **Move entre coleções**: Remove de `conteudosInscritos` e adiciona em `conteudosConcluidos`
-3. **Validação**: Verifica se há conteúdos para progredir
-4. **FIFO**: Segue a ordem de inscrição (primeiro a entrar, primeiro a sair)
-
-### 3. `calcularTotalXp()`
-```java
-public double calcularTotalXp() {
-    return this.conteudosConcluidos.stream()
-            .mapToDouble(conteudo -> conteudo.calcularXp())
-            .sum();
-}
-```
-
-**Lógica:**
-1. **Stream dos concluídos**: Processa apenas conteúdos finalizados
-2. **Polimorfismo**: `calcularXp()` é chamado dinamicamente (Curso=11, Mentoria=30)
-3. **Soma total**: Acumula XP de todos os conteúdos concluídos
+`.gitignore` configurado para VSCode com suporte adicional para Maven, Gradle, IntelliJ IDEA e Eclipse.
 
 ---
 
-## Integração Simples no Main
+## Navegação
 
-```java
-Dev devEu = new Dev();
-devEu.setNome("heloysa");
-devEu.inscreverBootcamp(bootcampJava);
+<div align="center">
 
-System.out.printf("Os conteudos do dev %s são os seguintes: %n", devEu.getNome());
-for (Conteudo conteudo : devEu.getConteudosInscritos()) {
-    System.out.println(conteudo);
-}
-```
+[![Anterior](https://img.shields.io/badge/⬅️_Anterior-heranca--polimorfismo--part--2-blue?style=for-the-badge)](../../tree/heranca-polimorfismo-part-2)
+[![Próximo](https://img.shields.io/badge/Próximo_➡️-final-green?style=for-the-badge)](../../tree/final)
 
-**Fluxo de Integração:**
-1. **Criação**: Dev é instanciado e nomeado
-2. **Inscrição**: `inscreverBootcamp()` automaticamente:
-   - Adiciona todos os conteúdos do bootcamp ao dev
-   - Registra o dev no bootcamp
-3. **Exibição**: Itera sobre `conteudosInscritos` usando `LinkedHashSet` (ordem preservada)
+</div>
 
----
-
-## Benefícios da Arquitetura
-
-### 1. **Flexibilidade**
-- Novos tipos de conteúdo podem ser adicionados facilmente
-- Polimorfismo permite comportamentos específicos
-
-### 2. **Consistência**
-- Collections garantem integridade dos dados
-- Relacionamentos bidirecionais mantêm sincronização
-
-### 3. **Performance**
-- `HashSet` e `LinkedHashSet` oferecem operações O(1)
-- Streams permitem processamento eficiente
-
-### 4. **Manutenibilidade**
-- Separação clara de responsabilidades
-- Código reutilizável e extensível
-
----
-
-## Conceitos POO Aplicados
-
-1. **Herança**: `Curso` e `Mentoria` herdam de `Conteudo`
-2. **Polimorfismo**: `calcularXp()` implementado diferentemente
-3. **Encapsulamento**: Atributos privados com acesso controlado
-4. **Abstração**: `Conteudo` define contrato sem implementação
-5. **Composição**: Classes usam collections para relacionamentos 
+Cada branch contém explicações detalhadas dos conceitos e evolução do código passo a passo. Siga as branches sequencialmente para aprendizado progressivo de POO.
