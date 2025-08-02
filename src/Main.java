@@ -7,13 +7,16 @@ import br.com.dio.desafio.dominio.Bootcamp;
 
 
 
+
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
 
 
+
         /* primeira forma de fazer, pensando no encapsulamente e abstracao */
+
 
         Curso curso1 = new Curso();
 
@@ -90,3 +93,13 @@ public class Main {
 
 
 }
+
+
+
+        System.out.println(mentoria);
+
+    }
+
+
+}
+
