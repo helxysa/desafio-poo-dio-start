@@ -1,57 +1,79 @@
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Mentoria;
-import br.com.dio.desafio.dominio.Conteudo;
+package br.com.dio.desafio.dominio;
 
+import java.util.Optional;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
-public class Main {
+public class Dev {
+    private String nome;
+    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
-
-    public static void main(String[] args) throws Exception {
-
-
-        /* primeira forma de fazer, pensando no encapsulamente e abstracao */
-
-        Curso curso1 = new Curso();
-
-        curso1.setTitulo("Curso Java");
-        curso1.setDescricao("Aprender os paradigmas da programacao com Java");
-        curso1.setCargaHoraria(100);
-
-
-        Curso curso2 = new Curso();
-
-        curso2.setTitulo("Curso Java");
-        curso2.setDescricao("Aprender os paradigmas da programacao com Java");
-        curso2.setCargaHoraria(100);
-
-
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("Mentoria Java");
-        mentoria.setDescricao("Mentoria sobre Java e boas práticas");
-        mentoria.setData(java.time.LocalDate.now());
-        
-
-        System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);
-
-        
-        /* segunda forma de fazer, pensando na heranca e polimorfismo */
-        
-        Conteudo conteudo1 = new Curso();
-        conteudo1.setTitulo("curso de heranca");
-        conteudo1.setDescricao("aprender os conceitos de heranca e polimorfismo");
-
-        Conteudo conteudo2 = new Mentoria();
-        conteudo2.setTitulo("mentoria em java");
-        conteudo2.setDescricao("mentoria em java");
-
-        System.out.println(conteudo1);
-        System.out.println(conteudo2);
-
-        
-
+   
+    public void inscreverBootcamp(Bootcamp bootcamp){
+            this.conteudosInscritos.addAll(bootcamp.getConteudos());
+            bootcamp.getDevsInscritos().add(this);
+            
     }
+
+    public void progedir() {
+        Optional<Conteudo> conteudo =  this.conteudosInscritos.stream().findFirst();
+        if (conteudo.isPresent()) {
+            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        } else {
+            System.err.println("Voce nao esta matriculado em nenhum conteudo");
+        }
+    }
+
+    public double calcularTotalXp() {
+        return this.conteudosConcluidos.stream()
+                .mapToDouble(conteudo -> conteudo.calcularXp())
+                .sum();
+    }
+
+
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Set<Conteudo> getConteudosInscritos() {
+        return conteudosInscritos;
+    }
+
+    public void setConteudosInscritos(Set<Conteudo> conteudosInscritos) {
+        this.conteudosInscritos = conteudosInscritos;
+    }
+
+    public Set<Conteudo> getConteudosConcluidos() {
+        return conteudosConcluidos;
+    }
+
+    public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
+        this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Dev dev = (Dev) o;
+
+    return nome != null ? nome.equals(dev.nome) : dev.nome == null;
+}
+
+@Override
+public int hashCode() {
+    return nome != null ? nome.hashCode() : 0;
+}
 
 
 }
