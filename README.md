@@ -107,7 +107,6 @@ public class Dev {
 
 ---
 
-<<<<<<< HEAD
 ## Objetivos do Desafio
 
 ### **Aprendizado Progressivo**
@@ -175,8 +174,6 @@ private Set<Conteudo> conteudos = new LinkedHashSet<>();
 
 ---
 
-<<<<<<< HEAD
-=======
 ## Métodos Principais
 
 ### 1. `inscreverBootcamp(Bootcamp bootcamp)`
