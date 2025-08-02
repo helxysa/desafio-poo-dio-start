@@ -107,14 +107,6 @@ java Main
 - **Como implementamos**: Interface clara através de métodos bem definidos
 - **Benefício**: Facilita o uso das classes, ocultando detalhes internos
 
----
-
-## 🔗 Links Úteis
-
-- [Documentação Java - Encapsulamento](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
-- [Programação Orientada a Objetos - Conceitos Básicos](https://docs.oracle.com/javase/tutorial/java/concepts/)
-
----
 
 ## 📝 Notas da Branch
 
@@ -125,3 +117,4 @@ Esta branch representa o **primeiro passo** no aprendizado de POO. Aqui focamos 
 
 **Status**: ✅ Concluído  
 **Próximo**: Herança
+
