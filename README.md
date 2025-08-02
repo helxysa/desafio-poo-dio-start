@@ -1,6 +1,25 @@
-# Abstração e Encapsulamento
+# Desafio POO - Digital Innovation One
 
-Implementação dos pilares fundamentais da Programação Orientada a Objetos através de exemplos práticos em Java.
+Implementação progressiva de Programação Orientada a Objetos demonstrando os pilares fundamentais da POO através de branches estruturadas para aprendizado.
+
+> **A branch main contém a implementação final completa.**
+
+## Branch Atual: abstracao-encapsulamento
+
+Esta branch demonstra a implementação dos pilares fundamentais da Programação Orientada a Objetos através de exemplos práticos em Java.
+
+**Status**: Concluído  
+**Próximo**: heranca-polimorfismo-part-1
+
+## Estrutura de Branches
+
+| Branch | Foco | Conceitos | Status |
+|--------|------|-----------|--------|
+| `abstracao-encapsulamento` | **Fundamentos da POO** | **Encapsulamento de dados, abstração de comportamentos** | **🔄 Atual** |
+| `heranca-polimorfismo-part-1` | Hierarquia de classes | Reutilização de código através de herança | ⏳ |
+| `heranca-polimorfismo-part-2` | Comportamentos específicos | Sobrescrita de métodos, polimorfismo | ⏳ |
+| `classes-dominio` | Integração do sistema | Composição, collections, relacionamentos entre objetos | ⏳ |
+| `final` | Demonstração completa | Integração completa dos pilares da POO | ⏳ |
 
 ## Conceitos Implementados
 
@@ -47,26 +66,29 @@ public class Mentoria {
 }
 ```
 
-## Execução
+## Início Rápido
 
 ```bash
-# Executar demonstração
+# Navegar para esta branch
+git checkout abstracao-encapsulamento
+
+# Compilar e executar
 cd src
-javac Main.java
+javac br/com/dio/desafio/dominio/*.java Main.java
 java Main
 ```
 
 ## Aprendizado
 
 ### Encapsulamento
-- Proteção de dados através de modificadores de acesso
-- Controle sobre como os dados são acessados e modificados
-- Base para manutenibilidade e segurança do código
+- **Proteção de dados** através de modificadores de acesso
+- **Controle sobre como os dados** são acessados e modificados
+- **Base para manutenibilidade** e segurança do código
 
 ### Abstração  
-- Simplificação da complexidade
-- Interface clara e intuitiva para uso das classes
-- Ocultação de detalhes de implementação
+- **Simplificação da complexidade**
+- **Interface clara e intuitiva** para uso das classes
+- **Ocultação de detalhes** de implementação
 
 ## Recursos Recomendados
 
@@ -84,6 +106,19 @@ java Main
 - [Oracle Java Documentation](https://docs.oracle.com/javase/)
 - [Java Code Conventions](https://www.oracle.com/java/technologies/javase/codeconventions-contents.html)
 
+## Configuração de Desenvolvimento
+
+`.gitignore` configurado para VSCode com suporte adicional para Maven, Gradle, IntelliJ IDEA e Eclipse.
+
 ---
 
-**Status**: Concluído | **Próximo**: `heranca-polimorfismo-part-1`
+## Navegação
+
+<div align="center">
+
+[![Anterior](https://img.shields.io/badge/⬅️_Anterior-main-blue?style=for-the-badge)](../../tree/main)
+[![Próximo](https://img.shields.io/badge/Próximo_➡️-heranca--polimorfismo--part--1-green?style=for-the-badge)](../../tree/heranca-polimorfismo-part-1)
+
+</div>
+
+Esta branch estabelece os fundamentos da POO. Os conceitos aqui aprendidos são essenciais para compreender as implementações mais avançadas nas próximas etapas.
