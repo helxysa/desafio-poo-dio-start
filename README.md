@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Desafio POO - Digital Innovation One
 
 ## Sobre o Projeto
