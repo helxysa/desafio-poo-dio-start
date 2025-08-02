@@ -1,47 +1,120 @@
-# Aprendizado Prático de Programação Orientada a Objetos em Java
+# 🚀 Linha do Tempo - Aprendizado POO em Java
 
-Este projeto tem como objetivo principal ensinar, por meio de exemplos práticos em Java, os principais pilares do Paradigma de Programação Orientada a Objetos (POO), além dos conceitos fundamentais dessa abordagem.
+## 📍 Branch Atual: **Abstração e Encapsulamento**
 
-## Sobre o Projeto
+Esta branch demonstra a implementação dos primeiros pilares da Programação Orientada a Objetos através de exemplos práticos em Java.
 
-Através de exemplos simples e diretos, o desenvolvedor poderá compreender e aplicar os conceitos essenciais da POO, tais como herança, polimorfismo, encapsulamento e abstração. O foco está em demonstrar como esses pilares são utilizados na prática para criar código mais organizado, reutilizável e de fácil manutenção.
+---
 
-## O que será aprendido
+## 🎯 O que está sendo implementado nesta branch
 
-- **Encapsulamento:** Controle do acesso aos dados e implementação de métodos para manipulação segura.
-- **Herança:** Reutilização de código por meio da criação de hierarquias entre classes.
-- **Polimorfismo:** Capacidade de um método se comportar de maneiras diferentes, dependendo da classe que o implementa.
-- **Abstração:** Definição clara dos comportamentos essenciais, ocultando detalhes internos.
-- **Conceitos básicos:** Classes, objetos, métodos, atributos, construtores, interfaces e relacionamentos entre classes.
+### **Encapsulamento**
+- ✅ Controle de acesso aos dados através de modificadores de acesso (`private`, `public`)
+- ✅ Implementação de métodos getters e setters para manipulação segura dos atributos
+- ✅ Proteção dos dados internos das classes
 
-## Como usar este projeto
+### **Abstração**
+- ✅ Definição clara dos comportamentos essenciais das classes
+- ✅ Ocultação de detalhes de implementação
+- ✅ Interface simples e intuitiva para uso das classes
 
-1. Faça o clone do repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   ```
+---
 
-2. Importe o projeto em sua IDE Java favorita.
-
-3. Explore os exemplos em cada pasta, execute e modifique o código para entender o funcionamento dos conceitos.
-
-4. Utilize os exemplos como base para seus próprios estudos e projetos.
-
-## Estrutura do projeto
+## 📁 Estrutura do Projeto (Branch Atual)
 
 ```
-/src
-  ├─ encapsulamento/
-  ├─ heranca/
-  ├─ polimorfismo/
-  ├─ abstracao/
-  └─ conceitos-basicos/
+src/
+├── br/com/dio/desafio/dominio/
+│   ├── Curso.java          ← Classe que implementa encapsulamento
+│   └── Mentoria.java       ← Classe que implementa encapsulamento
+└── Main.java               ← Demonstração do uso das classes
 ```
 
-Cada pasta contém exemplos focados em um pilar ou conceito da orientação a objetos.
+## 🔍 Exemplos Implementados
 
-## Tecnologias utilizadas
+### **Classe Curso**
+```java
+public class Curso {
+    private String titulo;      // Encapsulamento: atributo privado
+    private String descricao;   // Encapsulamento: atributo privado
+    private int cargaHoraria;   // Encapsulamento: atributo privado
+    
+    // Getters e Setters para acesso controlado
+    public void setTitulo(String titulo) { ... }
+    public String getTitulo() { ... }
+    // ... outros métodos
+}
+```
 
-- Java 11 ou superior
-- IDE para desenvolvimento Java (Eclipse, IntelliJ IDEA, VS Code, etc.)
+### **Classe Mentoria**
+```java
+public class Mentoria {
+    private String titulo;      // Encapsulamento: atributo privado
+    private String descricao;   // Encapsulamento: atributo privado
+    private LocalDate data;     // Encapsulamento: atributo privado
+    
+    // Getters e Setters para acesso controlado
+    public void setTitulo(String titulo) { ... }
+    public String getTitulo() { ... }
+    // ... outros métodos
+}
+```
+
+---
+
+## 🛠️ Como executar
+
+1. Clone o repositório
+2. Navegue para esta branch: `git checkout "Abstracao e Encapsulamento"`
+3. Execute o arquivo `Main.java` para ver os exemplos em ação
+
+```bash
+cd src
+javac Main.java
+java Main
+```
+
+---
+
+## 📈 Próximas Branches (Linha do Tempo)
+
+### **Branch 2: Herança**
+- Implementação de hierarquia entre classes
+- Reutilização de código através de herança
+- Uso de `extends` e `super`
+
+### **Branch 3: Polimorfismo**
+- Métodos com comportamentos diferentes
+- Sobrescrita de métodos
+- Interfaces e implementações
+
+### **Branch 4: Projeto Completo**
+- Integração de todos os conceitos
+- Sistema completo de gerenciamento de cursos
+- Aplicação prática dos pilares da POO
+
+---
+
+## 🎓 Conceitos Aprendidos
+
+### **Encapsulamento**
+- **O que é**: Proteção dos dados através de modificadores de acesso
+- **Como implementamos**: Atributos `private` + métodos `public` para acesso
+- **Benefício**: Controle total sobre como os dados são acessados e modificados
+
+### **Abstração**
+- **O que é**: Simplificação da complexidade, mostrando apenas o essencial
+- **Como implementamos**: Interface clara através de métodos bem definidos
+- **Benefício**: Facilita o uso das classes, ocultando detalhes internos
+
+
+## 📝 Notas da Branch
+
+Esta branch representa o **primeiro passo** no aprendizado de POO. Aqui focamos em:
+- Entender como proteger dados com encapsulamento
+- Criar interfaces simples e intuitivas
+- Estabelecer boas práticas de programação
+
+**Status**: ✅ Concluído  
+**Próximo**: Herança
 
