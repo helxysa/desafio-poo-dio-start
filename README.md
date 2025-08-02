@@ -1,320 +1,192 @@
-# Branch Final - Integração Completa das Classes de Domínio
+# Desafio POO - Digital Innovation One
 
-## Status:  Concluído
+Implementação progressiva de Programação Orientada a Objetos demonstrando os pilares fundamentais da POO através de branches estruturadas para aprendizado.
 
-Esta é a versão final do projeto, demonstrando a integração completa entre todas as classes de domínio com funcionalidades avançadas de gerenciamento de estado e relacionamentos.
+> **A branch main contém a implementação final completa.**
 
-## Estrutura das Classes de Domínio
+## Branch Atual: final
 
-### 1. Classe Abstrata `Conteudo`
-```java
-public abstract class Conteudo {
-    protected static final double XP_PADRAO = 10;
-    private String titulo;
-    private String descricao;
-    
-    public abstract double calcularXp();
-}
-```
+Esta branch demonstra a integração completa entre todas as classes de domínio com funcionalidades avançadas de gerenciamento de estado, relacionamentos e implementações dos métodos fundamentais do Java.
 
-### 2. Classes Concretas: `Curso` e `Mentoria`
+**Status**: Concluído  
+**Próximo**: main
 
-**Curso:**
-```java
-public class Curso extends Conteudo {
-    private int cargaHoraria;
-    
-    @Override
-    public double calcularXp() {
-        return XP_PADRAO + 10;
-    }
-}
-```
+## Estrutura de Branches
 
-**Mentoria:**
-```java
-public class Mentoria extends Conteudo {
-    private LocalDate data;
-    
-    @Override
-    public double calcularXp() {
-        return XP_PADRAO + 30d;
-    }
-}
-```
+| Branch | Foco | Conceitos | Status |
+|--------|------|-----------|--------|
+| `abstracao-encapsulamento` | Fundamentos da POO | Encapsulamento de dados, abstração de comportamentos | ✅ |
+| `heranca-polimorfismo-part-1` | Hierarquia de classes | Reutilização de código através de herança | ✅ |
+| `heranca-polimorfismo-part-2` | Comportamentos específicos | Sobrescrita de métodos, polimorfismo | ✅ |
+| `classes-dominio` | Integração do sistema | Composição, collections, relacionamentos entre objetos | ✅ |
+| `final` | **Demonstração completa** | **Integração completa dos pilares da POO** | **🔄 Atual** |
 
-### 3. Classe `Bootcamp`
-```java
-public class Bootcamp {
-    private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();
-}
-```
+## Características da Branch Final
 
-### 4. Classe `Dev`
-```java
-public class Dev {
-    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
-}
-```
+### Implementações Avançadas
 
----
+| Funcionalidade | Classes Implementadas | Benefício |
+|----------------|----------------------|-----------|
+| `equals()` e `hashCode()` | Dev, Bootcamp | Comparação correta em collections |
+| `toString()` | Curso, Mentoria | Representação textual legível |
+| Valores de XP ajustados | Curso (20 XP), Mentoria (40 XP) | Balanceamento do sistema |
+| Demonstração completa | Main.java | Fluxo completo do sistema |
 
-## Collections Utilizadas
+### Sistema de XP Atualizado
 
-### 1. `LinkedHashSet<Conteudo>` em Dev
-```java
-private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
-```
+| Conteúdo | XP Base | Bônus | Total |
+|----------|---------|-------|-------|
+| Curso | 10 | +10 | **20 XP** |
+| Mentoria | 10 | +30 | **40 XP** |
 
-### 2. `HashSet<Dev>` em Bootcamp
-```java
-private Set<Dev> devsInscritos = new HashSet<>();
-```
+### Funcionalidades do Sistema
 
-### 3. `LinkedHashSet<Conteudo>` em Bootcamp
-```java
-private Set<Conteudo> conteudos = new LinkedHashSet<>();
-```
+- **Criação de Bootcamps**: Configuração completa com múltiplos conteúdos
+- **Inscrição de Múltiplos Devs**: Sistema suporta vários desenvolvedores simultaneamente
+- **Progressão Individual**: Cada dev progride independentemente
+- **Cálculo de XP**: Sistema polimórfico calcula XP total automaticamente
+- **Relacionamentos Bidirecionais**: Sincronização automática entre Dev ↔ Bootcamp
 
----
+## Melhorias Implementadas
 
-## Métodos Principais
-
-### 1. `inscreverBootcamp(Bootcamp bootcamp)`
-```java
-public void inscreverBootcamp(Bootcamp bootcamp){
-    this.conteudosInscritos.addAll(bootcamp.getConteudos());
-    bootcamp.getDevsInscritos().add(this);
-}
-```
-
-### 2. `progedir()`
-```java
-public void progedir() {
-    Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-    if (conteudo.isPresent()) {
-        this.conteudosConcluidos.add(conteudo.get());
-        this.conteudosInscritos.remove(conteudo.get());
-    } else {
-        System.err.println("Voce nao esta matriculado em nenhum conteudo");
-    }
-}
-```
-
-### 3. `calcularTotalXp()`
-```java
-public double calcularTotalXp() {
-    return this.conteudosConcluidos.stream()
-            .mapToDouble(conteudo -> conteudo.calcularXp())
-            .sum();
-}
-```
-
----
-
-## Integração no Main.java
+### 1. Métodos equals() e hashCode()
 
 ```java
-Dev devEu = new Dev();
-devEu.setNome("heloysa");
-devEu.inscreverBootcamp(bootcampJava);
-
-System.out.printf("Os conteudos do dev %s são os seguintes: %n", devEu.getNome());
-for (Conteudo conteudo : devEu.getConteudosInscritos()) {
-    System.out.println(conteudo);
-}
-```
-
----
-
-## Conceitos POO Aplicados
-
-1. **Herança**: `Curso` e `Mentoria` herdam de `Conteudo`
-2. **Polimorfismo**: `calcularXp()` implementado diferentemente
-3. **Encapsulamento**: Atributos privados com acesso controlado
-4. **Abstração**: `Conteudo` define contrato sem implementação
-5. **Composição**: Classes usam collections para relacionamentos
-
----
-
-## Últimas Alterações Implementadas
-
-### 1. **Implementação de equals() e hashCode()**
-
-**Classe Dev:**
-```java
+// Classe Dev - Comparação por nome
 @Override
 public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-
     Dev dev = (Dev) o;
     return nome != null ? nome.equals(dev.nome) : dev.nome == null;
 }
-
-@Override
-public int hashCode() {
-    return nome != null ? nome.hashCode() : 0;
-}
 ```
 
-**Classe Bootcamp:**
+### 2. Métodos toString()
+
 ```java
-@Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Bootcamp)) return false;
-    Bootcamp bootcamp = (Bootcamp) o;
-    return Objects.equals(nome, bootcamp.nome) &&
-           Objects.equals(descricao, bootcamp.descricao) &&
-           Objects.equals(dataInicial, bootcamp.dataInicial) &&
-           Objects.equals(data_final, bootcamp.data_final) &&
-           Objects.equals(devsInscritos, bootcamp.devsInscritos) &&
-           Objects.equals(conteudos, bootcamp.conteudos);
-}
-
-@Override
-public int hashCode() {
-    return Objects.hash(nome, descricao, dataInicial, data_final, devsInscritos, conteudos);
-}
-```
-
-### 2. **Implementação de toString()**
-
-**Classe Curso:**
-```java
+// Representação legível dos objetos
 @Override
 public String toString() {
     return "Curso{" +
             "titulo='" + getTitulo() + '\'' +
-            ", descricao='" + getDescricao() + '\'' +
             ", cargaHoraria=" + cargaHoraria +
             '}';
 }
 ```
 
-**Classe Mentoria:**
+### 3. Demonstração Completa
+
 ```java
-@Override
-public String toString() {
-    return "Mentoria{" +
-            "titulo='" + getTitulo() + '\'' +
-            ", descricao='" + getDescricao() + '\'' +
-            ", data=" + data +
-            '}';
-}
-```
-
-### 3. **Correção dos Valores de XP**
-
-**Antes:**
-- Curso: XP_PADRAO + 1 = 11 XP
-- Mentoria: XP_PADRAO + 20 = 30 XP
-
-**Agora:**
-- Curso: XP_PADRAO + 10 = 20 XP
-- Mentoria: XP_PADRAO + 30 = 40 XP
-
-### 4. **Melhorias no Main.java**
-
-**Demonstração Completa do Sistema:**
-```java
+// Main.java - Fluxo completo do sistema
 Dev dev1 = new Dev();
 dev1.setNome("Camila");
 dev1.inscreverBootcamp(bootcampDio);
 
-Dev dev2 = new Dev();
-dev2.setNome("Jorge");
-dev2.inscreverBootcamp(bootcampDio);
-
 dev1.progedir();
 dev1.progedir();
 dev1.progedir();
 
-System.out.println("XP total da Dev " + dev1.getNome() + ": " + dev1.calcularTotalXp());
+System.out.println("XP total: " + dev1.calcularTotalXp());
 ```
 
----
+## Início Rápido
 
-## Interligações Entre Classes
+```bash
+# Navegar para esta branch
+git checkout final
 
-### 1. **Relacionamento Dev ↔ Bootcamp**
-
-```java
-dev.inscreverBootcamp(bootcamp);
+# Compilar e executar
+cd src
+javac br/com/dio/desafio/dominio/*.java Main.java
+java Main
 ```
 
-### 2. **Relacionamento Dev ↔ Conteudo**
+## Estrutura do Projeto
 
-```java
-Set<Conteudo> conteudosInscritos;
-Set<Conteudo> conteudosConcluidos;
-
-dev.progedir();
+```
+src/
+├── br/com/dio/desafio/dominio/
+│   ├── Conteudo.java         # Classe abstrata base
+│   ├── Curso.java            # Implementação concreta - XP: 20
+│   ├── Mentoria.java         # Implementação concreta - XP: 40  
+│   ├── Bootcamp.java         # Gerenciador com equals/hashCode
+│   └── Dev.java              # Gerenciador com equals/hashCode
+└── Main.java                 # Demonstração completa integrada
 ```
 
-### 3. **Relacionamento Bootcamp ↔ Conteudo**
+## Fluxo Completo do Sistema
 
-```java
-Set<Conteudo> conteudos = new LinkedHashSet<>();
-conteudos.add(curso1);
-conteudos.add(curso2);
-conteudos.add(mentoria);
-```
-
----
-
-## Fluxo do Sistema
-
-### 1. **Criação do Bootcamp**
+### 1. Configuração do Bootcamp
 ```java
 Bootcamp bootcamp = new Bootcamp();
-bootcamp.setNome("Bootcamp Java");
-bootcamp.setDescricao("Aprenda Java do zero ao avançado");
+bootcamp.setNome("Bootcamp Java Developer");
 bootcamp.getConteudos().add(curso1);
 bootcamp.getConteudos().add(curso2);
 bootcamp.getConteudos().add(mentoria);
 ```
 
-### 2. **Inscrição de Devs**
-```java
-Dev dev = new Dev();
-dev.setNome("João");
-dev.inscreverBootcamp(bootcamp);
-```
-
-### 3. **Progressão do Dev**
-```java
-dev.progedir();
-dev.progedir();
-dev.progedir();
-```
-
-### 4. **Múltiplos Devs**
+### 2. Gestão de Múltiplos Desenvolvedores
 ```java
 Dev dev1 = new Dev();
 Dev dev2 = new Dev();
 
 dev1.inscreverBootcamp(bootcamp);
 dev2.inscreverBootcamp(bootcamp);
-
-dev1.progedir();
 ```
 
----
+### 3. Progressão Independente
+```java
+// Dev1 completa todos os conteúdos
+dev1.progedir();
+dev1.progedir();
+dev1.progedir();
+
+// Dev2 completa apenas um
+dev2.progedir();
+```
+
+### 4. Comparação de Resultados
+```java
+System.out.println("XP Dev1: " + dev1.calcularTotalXp()); // 100 XP
+System.out.println("XP Dev2: " + dev2.calcularTotalXp()); // 20 XP
+```
 
 ## Conceitos POO Demonstrados
 
-1. **Herança**: Hierarquia Conteudo → Curso/Mentoria
-2. **Polimorfismo**: calcularXp() implementado diferentemente
-3. **Encapsulamento**: Atributos privados com acesso controlado
-4. **Abstração**: Conteudo define contrato abstrato
-5. **Composição**: Classes usam collections para relacionamentos
-6. **Sobrescrita**: equals(), hashCode(), toString() customizados
+### Pilares Fundamentais
+- **Abstração**: Classe `Conteudo` define contrato base
+- **Encapsulamento**: Atributos privados com getters/setters
+- **Herança**: `Curso` e `Mentoria` estendem `Conteudo`
+- **Polimorfismo**: `calcularXp()` com comportamentos específicos
+
+### Conceitos Avançados
+- **Composição**: Collections para relacionamentos complexos
+- **Sobrescrita**: `equals()`, `hashCode()`, `toString()`
+- **Streams**: Processamento funcional para cálculo de XP
+- **Optional**: Tratamento seguro de valores nulos
+
+## Collections e Performance
+
+| Collection | Uso | Complexidade | Justificativa |
+|------------|-----|--------------|---------------|
+| `LinkedHashSet<Conteudo>` | Dev (inscritos/concluídos) | O(1) | Ordem + unicidade |
+| `HashSet<Dev>` | Bootcamp (desenvolvedores) | O(1) | Performance máxima |
+| `LinkedHashSet<Conteudo>` | Bootcamp (conteúdos) | O(1) | Sequência de criação |
+
+## Configuração de Desenvolvimento
+
+`.gitignore` configurado para VSCode com suporte adicional para Maven, Gradle, IntelliJ IDEA e Eclipse.
 
 ---
 
-**Status Final**: Sistema completo e funcional com todas as classes de domínio integradas e relacionamentos estabelecidos. 
+## Navegação
+
+<div align="center">
+
+[![Anterior](https://img.shields.io/badge/⬅️_Anterior-classes--dominio-blue?style=for-the-badge)](../../tree/classes-dominio)
+[![Próximo](https://img.shields.io/badge/Próximo_➡️-main-green?style=for-the-badge)](../../tree/main)
+
+</div>
+
+Esta é a implementação final.
