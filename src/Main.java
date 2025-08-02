@@ -1,6 +1,10 @@
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Mentoria;
 import br.com.dio.desafio.dominio.Conteudo;
+import br.com.dio.desafio.dominio.Dev;
+import br.com.dio.desafio.dominio.Bootcamp;
+
+
 
 
 
@@ -40,7 +44,7 @@ public class Main {
 
         
         /* segunda forma de fazer, pensando na heranca e polimorfismo */
-        
+
         Conteudo conteudo1 = new Curso();
         conteudo1.setTitulo("curso de heranca");
         conteudo1.setDescricao("aprender os conceitos de heranca e polimorfismo");
@@ -52,12 +56,44 @@ public class Main {
         System.out.println(conteudo1);
         System.out.println(conteudo2);
 
+
+        /*aqui ja eh a inscricao nos conteudos do bootcamp */
+        
+        Bootcamp bootcampJava = new Bootcamp();
+        java.util.Set<Conteudo> conteudos = new java.util.LinkedHashSet<>();
+        conteudos.add(conteudo1);
+        bootcampJava.setConteudos(conteudos);
+        java.util.Set<Bootcamp> bootcamps = new java.util.LinkedHashSet<>();
+        bootcamps.add(bootcampJava);
+
+        for (Bootcamp bootcamp : bootcamps){
+            System.out.println(bootcamp);
+        }
+
+
+        /* o dev se inscrevendo  */
+
+        Dev devEu = new Dev();
+        devEu.setNome("heloysa");
+        devEu.inscreverBootcamp(bootcampJava);
+
+        System.out.printf("Os conteudos do dev %s são os seguintes: %n", devEu.getNome());
+        for (Conteudo conteudo : devEu.getConteudosInscritos()) {
+            System.out.println(conteudo);
+        }
+
+
+        /*   */
+
+        
+
         
 
     }
 
 
 }
+
 
 
         System.out.println(mentoria);
