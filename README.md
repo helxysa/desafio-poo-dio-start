@@ -1,6 +1,25 @@
-# Herança e Polimorfismo - Part 1
+# Desafio POO - Digital Innovation One
 
-Implementação de hierarquia de classes e polimorfismo através de classe abstrata e métodos abstratos em Java.
+Implementação progressiva de Programação Orientada a Objetos demonstrando os pilares fundamentais da POO através de branches estruturadas para aprendizado.
+
+> **A branch main contém a implementação final completa.**
+
+## Branch Atual: heranca-polimorfismo-part-1
+
+Esta branch demonstra a implementação de hierarquia de classes e polimorfismo através de classe abstrata e métodos abstratos em Java.
+
+**Status**: Concluído  
+**Próximo**: heranca-polimorfismo-part-2
+
+## Estrutura de Branches
+
+| Branch | Foco | Conceitos | Status |
+|--------|------|-----------|--------|
+| `abstracao-encapsulamento` | Fundamentos da POO | Encapsulamento de dados, abstração de comportamentos | ✅ |
+| `heranca-polimorfismo-part-1` | **Hierarquia de classes** | **Reutilização de código através de herança** | **🔄 Atual** |
+| `heranca-polimorfismo-part-2` | Comportamentos específicos | Sobrescrita de métodos, polimorfismo | ⏳ |
+| `classes-dominio` | Integração do sistema | Composição, collections, relacionamentos entre objetos | ⏳ |
+| `final` | Demonstração completa | Integração completa dos pilares da POO | ⏳ |
 
 ## Conceitos Implementados
 
@@ -73,30 +92,34 @@ System.out.println(conteudo1.calcularXp());  // 11
 System.out.println(conteudo2.calcularXp());  // 30
 ```
 
-## Execução
+## Início Rápido
 
 ```bash
+# Navegar para esta branch
+git checkout heranca-polimorfismo-part-1
+
+# Compilar e executar
 cd src
-javac Main.java
+javac br/com/dio/desafio/dominio/*.java Main.java
 java Main
 ```
 
 ## Aprendizado
 
 ### Herança
-- Relacionamento "é um" entre classes
-- Reutilização de código através de `extends`
-- Acesso a atributos e métodos da classe pai
+- **Relacionamento "é um"** entre classes
+- **Reutilização de código** através de `extends`
+- **Acesso a atributos e métodos** da classe pai
 
 ### Polimorfismo
-- Métodos abstratos garantem implementação nas subclasses
-- Cada classe pode ter comportamento específico
-- Flexibilidade através de referências da classe pai
+- **Métodos abstratos** garantem implementação nas subclasses
+- **Cada classe** pode ter comportamento específico
+- **Flexibilidade** através de referências da classe pai
 
 ### Classe Abstrata
-- Não pode ser instanciada diretamente
-- Define contrato comum através de métodos abstratos
-- Compartilha código comum entre subclasses
+- **Não pode ser instanciada** diretamente
+- **Define contrato comum** através de métodos abstratos
+- **Compartilha código comum** entre subclasses
 
 ## Recursos Recomendados
 
@@ -114,6 +137,19 @@ java Main
 - [Oracle - Inheritance](https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html)
 - [Oracle - Abstract Methods and Classes](https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html)
 
+## Configuração de Desenvolvimento
+
+`.gitignore` configurado para VSCode com suporte adicional para Maven, Gradle, IntelliJ IDEA e Eclipse.
+
 ---
 
-**Status**: Concluído | **Próximo**: `heranca-polimorfismo-part-2`
+## Navegação
+
+<div align="center">
+
+[![Anterior](https://img.shields.io/badge/⬅️_Anterior-abstracao--encapsulamento-blue?style=for-the-badge)](../../tree/abstracao-encapsulamento)
+[![Próximo](https://img.shields.io/badge/Próximo_➡️-heranca--polimorfismo--part--2-green?style=for-the-badge)](../../tree/heranca-polimorfismo-part-2)
+
+</div>
+
+Esta branch introduz os conceitos fundamentais de herança e polimorfismo, estabelecendo a base para implementações mais avançadas nas próximas etapas.
