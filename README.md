@@ -1,63 +1,28 @@
 # Desafio POO - Digital Innovation One
 
-## Sobre o Projeto
+Implementação progressiva de Programação Orientada a Objetos demonstrando os pilares fundamentais da POO através de branches estruturadas para aprendizado.
 
-Este repositório contém a implementação do **Desafio de Programação Orientada a Objetos** da Digital Innovation One, demonstrando a evolução progressiva dos conceitos de POO através de branches organizadas por etapas de aprendizado.
+> **A branch main contém a implementação final completa.**
 
 ## Estrutura de Branches
 
-### **`abstracao-encapsulamento`**
-- **Objetivo**: Implementar os primeiros pilares da POO
-- **Conceitos**: Encapsulamento de dados e abstração de comportamentos
+| Branch | Foco | Conceitos |
+|--------|------|-----------|
+| `abstracao-encapsulamento` | Fundamentos da POO | Encapsulamento de dados, abstração de comportamentos |
+| `heranca-polimorfismo-part-1` | Hierarquia de classes | Reutilização de código através de herança |
+| `heranca-polimorfismo-part-2` | Comportamentos específicos | Sobrescrita de métodos, polimorfismo |
+| `classes-dominio` | Integração do sistema | Composição, collections, relacionamentos entre objetos |
+| `final` | Demonstração completa | Integração completa dos pilares da POO |
 
-### **`heranca-polimorfismo-part-1`**
-- **Objetivo**: Estabelecer hierarquia entre classes
-- **Conceitos**: Reutilização de código através de herança
-
-### **`heranca-polimorfismo-part-2`**
-- **Objetivo**: Implementar comportamentos específicos
-- **Conceitos**: Sobrescrita de métodos e polimorfismo
-
-### **`classes-dominio`**
-- **Objetivo**: Integrar todos os conceitos em um sistema completo
-- **Conceitos**: Composição, collections e relacionamentos entre objetos
-
-### **`final`**
-- **Objetivo**: Demonstração final com todas as funcionalidades
-- **Conceitos**: Integração completa dos pilares da POO
-
----
-
-## Como Navegar pelas Branches
-
-### **Para Estudar Progressivamente:**
-```bash
-# Branch 1: Conceitos básicos
-git checkout abstracao-encapsulamento
-
-# Branch 2: Herança
-git checkout heranca-polimorfismo-part-1
-
-# Branch 3: Polimorfismo  
-git checkout heranca-polimorfismo-part-2
-
-# Branch 4: Classes de domínio
-git checkout classes-dominio
-
-# Branch Final: Sistema completo
-git checkout final
-```
-
-## Como Compilar e Executar
+## Início Rápido
 
 ```bash
-# Navegue até o diretório src
+# Navegar para o estágio de aprendizado desejado
+git checkout <nome-da-branch>
+
+# Compilar e executar
 cd src
-
-# Compile o projeto
 javac Main.java
-
-# Execute o programa
 java Main
 ```
 
@@ -66,18 +31,18 @@ java Main
 ```
 src/
 ├── br/com/dio/desafio/dominio/
-│   ├── Conteudo.java         ← Classe abstrata
-│   ├── Curso.java            ← Classe concreta
-│   ├── Mentoria.java         ← Classe concreta
-│   ├── Bootcamp.java         ← Classe de domínio
-│   └── Dev.java              ← Classe de domínio
-└── Main.java                 ← Demonstração do sistema
+│   ├── Conteudo.java         # Classe abstrata base
+│   ├── Curso.java            # Implementação concreta
+│   ├── Mentoria.java         # Implementação concreta  
+│   ├── Bootcamp.java         # Classe de domínio
+│   └── Dev.java              # Classe de domínio
+└── Main.java                 # Demonstração do sistema
 ```
 
-## Configuração do Ambiente
+## Configuração de Desenvolvimento
 
-O `.gitignore` está configurado para VSCode, mas inclui configurações adicionais para diferentes IDEs e gerenciadores de build (Maven, Gradle, IntelliJ, Eclipse).
+`.gitignore` configurado para VSCode com suporte adicional para Maven, Gradle, IntelliJ IDEA e Eclipse.
 
 ---
 
-**Nota**: Cada branch contém explicações detalhadas dos conceitos implementados e passo a passo da evolução do código. Navegue pelas branches para acompanhar o aprendizado progressivo dos pilares da POO.
+Cada branch contém explicações detalhadas dos conceitos e evolução do código passo a passo. Siga as branches sequencialmente para aprendizado progressivo de POO.
