@@ -1,90 +1,72 @@
-# Linha do Tempo - Aprendizado POO em Java
+# Herança e Polimorfismo - Part 2
 
-## Branch Atual: Herança e Polimorfismo Part 2
+Implementação avançada de gerenciamento de coleções, relacionamentos entre objetos e controle de duplicatas através de classes de domínio.
 
-Esta branch demonstra a implementação avançada dos pilares da Programação Orientada a Objetos através de exemplos práticos em Java, focando em herança, polimorfismo e abstração.
+> **Branch original**: [heranca-polimorfismo-part-2](https://github.com/helxysa/desafio-poo-dio-start/tree/heranca-polimorfismo-part-2)
 
----
+## Conceitos Implementados
 
-## O que está sendo implementado nesta branch
-
-### Gerenciamento de Coleções com Set
-- Uso de `Set` para garantir que não haja itens duplicados
-- Implementação de `equals()` e `hashCode()` para comparação correta de objetos
-- Controle de acesso através de modificadores apropriados
-
-### Classe Bootcamp
-- Gerencia uma coleção de `Dev` inscritos e `Conteudo` disponíveis
-- Usa `HashSet` para devs (ordem não importa) e `LinkedHashSet` para conteúdos (ordem importa)
-- Implementa `equals()` e `hashCode()` para comparação de bootcamps
-
-### Classe Dev
-- Gerencia inscrições em bootcamps e progresso nos conteúdos
-- Mantém duas coleções: conteúdos inscritos e conteúdos concluídos
-- Implementa `equals()` e `hashCode()` baseado no nome do desenvolvedor
-
----
+| Conceito | Implementação | Benefício |
+|----------|---------------|-----------|
+| **Coleções Set** | `HashSet` e `LinkedHashSet` | Controle de duplicatas e ordem |
+| **equals() e hashCode()** | Sobrescrita baseada em atributos relevantes | Comparação correta de objetos |
+| **Relacionamentos** | Associações bidirecionais entre classes | Integridade referencial |
+| **Gerenciamento de Estado** | Controle de progresso e inscrições | Consistência de dados |
 
 ## Estrutura do Projeto
 
 ```
 src/
 ├── br/com/dio/desafio/dominio/
-│   ├── Conteudo.java        ← Classe abstrata base
-│   ├── Curso.java           ← Herda de Conteudo
-│   ├── Mentoria.java        ← Herda de Conteudo
-│   ├── Bootcamp.java        ← Gerencia Devs e Conteúdos
-│   └── Dev.java             ← Gerencia inscrições e progresso
-└── Main.java                ← Demonstração do uso das classes
+│   ├── Conteudo.java        # Classe abstrata base
+│   ├── Curso.java           # Herda de Conteudo
+│   ├── Mentoria.java        # Herda de Conteudo
+│   ├── Bootcamp.java        # Gerencia Devs e Conteúdos
+│   └── Dev.java             # Gerencia inscrições e progresso
+└── Main.java                # Demonstração do sistema
 ```
 
-## Exemplos Implementados
+## Exemplos de Código
 
-### Classe Bootcamp - Gerenciamento de Coleções
+### Bootcamp.java - Gerenciamento de Coleções
 ```java
 public class Bootcamp {
     private String nome;
     private String descricao;
     private final LocalDate dataInicial = LocalDate.now();
-    private final LocalDate data_final = dataInicial.plusDays(45);
-
-    // HashSet: não permite duplicatas, ordem não importa
+    private final LocalDate dataFinal = dataInicial.plusDays(45);
+    
+    // HashSet: ordem não importa para devs
     private Set<Dev> devsInscritos = new HashSet<>();
     
-    // LinkedHashSet: não permite duplicatas, mantém ordem de inserção
+    // LinkedHashSet: ordem importa para conteúdos
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Bootcamp)) return false;
         Bootcamp bootcamp = (Bootcamp) o;
         return Objects.equals(nome, bootcamp.nome) &&
-               Objects.equals(descricao, bootcamp.descricao) &&
-               Objects.equals(dataInicial, bootcamp.dataInicial) &&
-               Objects.equals(data_final, bootcamp.data_final) &&
-               Objects.equals(devsInscritos, bootcamp.devsInscritos) &&
-               Objects.equals(conteudos, bootcamp.conteudos);
+               Objects.equals(descricao, bootcamp.descricao);
     }
-
+    
     @Override
     public int hashCode() {
-        return Objects.hash(nome, descricao, dataInicial, data_final, devsInscritos, conteudos);
+        return Objects.hash(nome, descricao, dataInicial, dataFinal);
     }
 }
 ```
 
-### Classe Dev - Controle de Progresso
+### Dev.java - Controle de Progresso
 ```java
 public class Dev {
     private String nome;
     
-    // LinkedHashSet: mantém ordem de inscrição
+    // LinkedHashSet: mantém ordem de inscrição/conclusão
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-    
-    // LinkedHashSet: mantém ordem de conclusão
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,7 +74,7 @@ public class Dev {
         Dev dev = (Dev) o;
         return nome != null ? nome.equals(dev.nome) : dev.nome == null;
     }
-
+    
     @Override
     public int hashCode() {
         return nome != null ? nome.hashCode() : 0;
@@ -100,29 +82,31 @@ public class Dev {
 }
 ```
 
-### Por que usar Set?
+## Escolha das Coleções
 
-#### HashSet vs LinkedHashSet
-- **HashSet**: Não permite duplicatas, ordem não importa
-  - Usado para `devsInscritos` porque a ordem dos devs não importa
-  - Mais eficiente para operações de busca
+### HashSet vs LinkedHashSet
 
-- **LinkedHashSet**: Não permite duplicatas, mantém ordem de inserção
-  - Usado para `conteudos` porque a ordem dos conteúdos importa
-  - Usado para `conteudosInscritos` e `conteudosConcluidos` para manter cronologia
+| Tipo | Uso | Razão |
+|------|-----|-------|
+| `HashSet<Dev>` | Devs inscritos | Ordem não importa, performance otimizada |
+| `LinkedHashSet<Conteudo>` | Conteúdos do bootcamp | Ordem de inserção importa |
+| `LinkedHashSet<Conteudo>` | Progresso do dev | Mantém cronologia de inscrição/conclusão |
 
-#### equals() e hashCode()
-- **equals()**: Define quando dois objetos são considerados iguais
-- **hashCode()**: Gera um código hash baseado nos atributos do objeto
-- **Importância**: O `Set` usa esses métodos para detectar duplicatas
+## Demonstração do Sistema
 
----
+```java
+// Criar bootcamp
+Bootcamp bootcamp = new Bootcamp();
+bootcamp.setNome("Bootcamp Java Developer");
+bootcamp.getConteudos().add(curso1);
+bootcamp.getConteudos().add(curso2);
+bootcamp.getConteudos().add(mentoria);
 
-## Como executar
+// Controle de duplicatas garantido pelo Set + equals()/hashCode()
+Set<Dev> devs = bootcamp.getDevsInscritos();
+```
 
-1. Clone o repositório
-2. Navegue para esta branch: `git checkout "Heranca e Polimorfismo Part 2"`
-3. Execute o arquivo `Main.java` para ver os exemplos em ação
+## Execução
 
 ```bash
 cd src
@@ -130,39 +114,39 @@ javac Main.java
 java Main
 ```
 
----
-
-## Conceitos Aprendidos
+## Aprendizado
 
 ### Gerenciamento de Coleções
-- **O que é**: Uso de estruturas de dados para organizar objetos relacionados
-- **Como implementamos**: `Set` para evitar duplicatas, `HashSet` e `LinkedHashSet` para diferentes necessidades
-- **Benefício**: Controle total sobre os dados, evitando inconsistências
+- `Set` previne duplicatas automaticamente
+- `HashSet` para performance, `LinkedHashSet` para ordem
+- Escolha da estrutura baseada na necessidade
 
 ### equals() e hashCode()
-- **O que é**: Métodos que definem como objetos são comparados e organizados
-- **Como implementamos**: Sobrescrita baseada nos atributos relevantes de cada classe
-- **Benefício**: Funcionamento correto das coleções e comparações precisas
-
-### HashSet vs LinkedHashSet
-- **HashSet**: Para quando a ordem não importa (devs inscritos)
-- **LinkedHashSet**: Para quando a ordem importa (conteúdos, progresso)
-- **Benefício**: Performance otimizada e controle sobre a organização dos dados
+- Fundamentais para funcionamento correto das coleções
+- Implementação baseada em atributos que definem identidade
+- Contrato: objetos iguais devem ter mesmo hashCode
 
 ### Controle de Duplicatas
-- **O que é**: Prevenção de itens repetidos nas coleções
-- **Como implementamos**: Uso de `Set` + implementação correta de `equals()` e `hashCode()`
-- **Benefício**: Integridade dos dados e comportamento previsível
+- Prevenção automática de itens repetidos
+- Integridade dos dados garantida
+- Comportamento previsível das coleções
+
+## Recursos Recomendados
+
+### Livros
+- **"Effective Java"** - Joshua Bloch (Cap. 3: equals/hashCode)
+- **"Java Collections Framework"** - Maurice Naftalin
+- **"Clean Code"** - Robert C. Martin
+
+### Cursos/Vídeos
+- [Collections em Java - Nélio Alves](https://www.youtube.com/watch?v=QRM9t6kOOlE)
+- [equals() e hashCode() - DevDojo](https://www.youtube.com/watch?v=ggW-NKOXYsM)
+- [Set Interface - DevDojo](https://www.youtube.com/watch?v=HgPquVqZs-c)
+
+### Documentação
+- [Java Collections Framework](https://docs.oracle.com/javase/8/docs/technotes/guides/collections/)
+- [Object.equals() Contract](https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-)
 
 ---
 
-## Notas da Branch
-
-Esta branch representa o avanço no aprendizado de POO. Aqui focamos em:
-- Gerenciar coleções de objetos sem duplicatas
-- Implementar comparações corretas com `equals()` e `hashCode()`
-- Escolher a estrutura de dados adequada para cada necessidade
-- Manter a integridade dos dados através de controles apropriados
-
-**Status**: Concluído  
-**Próximo**: Implementações futuras com interfaces e composição 
+**Branch anterior**: [heranca-polimorfismo-part-1](https://github.com/helxysa/desafio-poo-dio-start/tree/heranca-polimorfismo-part-1) | **Status**: Concluído | **Próximo**: [classes-dominio](https://github.com/helxysa/desafio-poo-dio-start/tree/classes-dominio)
