@@ -42,18 +42,6 @@ Cada pasta contém exemplos focados em um pilar ou conceito da orientação a ob
 
 ## Tecnologias utilizadas
 
-- Java 8 ou superior
+- Java 11 ou superior
 - IDE para desenvolvimento Java (Eclipse, IntelliJ IDEA, VS Code, etc.)
 
-## Referências
-
-- [Documentação oficial Java](https://docs.oracle.com/javase/tutorial/java/concepts/)
-- Materiais complementares de Programação Orientada a Objetos
-
-## Contribuições
-
-Contribuições são bem-vindas. Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias ou exemplos adicionais.
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
