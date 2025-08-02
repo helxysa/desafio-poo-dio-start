@@ -1,26 +1,26 @@
-# 🚀 Linha do Tempo - Aprendizado POO em Java
+# Linha do Tempo - Aprendizado POO em Java
 
-## 📍 Branch Atual: **Abstração e Encapsulamento**
+## Branch Atual: Abstração e Encapsulamento
 
 Esta branch demonstra a implementação dos primeiros pilares da Programação Orientada a Objetos através de exemplos práticos em Java.
 
 ---
 
-## 🎯 O que está sendo implementado nesta branch
+## O que está sendo implementado nesta branch
 
-### **Encapsulamento**
-- ✅ Controle de acesso aos dados através de modificadores de acesso (`private`, `public`)
-- ✅ Implementação de métodos getters e setters para manipulação segura dos atributos
-- ✅ Proteção dos dados internos das classes
+### Encapsulamento
+- Controle de acesso aos dados através de modificadores de acesso (`private`, `public`)
+- Implementação de métodos getters e setters para manipulação segura dos atributos
+- Proteção dos dados internos das classes
 
-### **Abstração**
-- ✅ Definição clara dos comportamentos essenciais das classes
-- ✅ Ocultação de detalhes de implementação
-- ✅ Interface simples e intuitiva para uso das classes
+### Abstração
+- Definição clara dos comportamentos essenciais das classes
+- Ocultação de detalhes de implementação
+- Interface simples e intuitiva para uso das classes
 
 ---
 
-## 📁 Estrutura do Projeto (Branch Atual)
+## Estrutura do Projeto
 
 ```
 src/
@@ -30,39 +30,35 @@ src/
 └── Main.java               ← Demonstração do uso das classes
 ```
 
-## 🔍 Exemplos Implementados
+## Exemplos Implementados
 
-### **Classe Curso**
+### Classe Curso
 ```java
 public class Curso {
-    private String titulo;      // Encapsulamento: atributo privado
-    private String descricao;   // Encapsulamento: atributo privado
-    private int cargaHoraria;   // Encapsulamento: atributo privado
+    private String titulo;
+    private String descricao;
+    private int cargaHoraria;
     
-    // Getters e Setters para acesso controlado
     public void setTitulo(String titulo) { ... }
     public String getTitulo() { ... }
-    // ... outros métodos
 }
 ```
 
-### **Classe Mentoria**
+### Classe Mentoria
 ```java
 public class Mentoria {
-    private String titulo;      // Encapsulamento: atributo privado
-    private String descricao;   // Encapsulamento: atributo privado
-    private LocalDate data;     // Encapsulamento: atributo privado
+    private String titulo;
+    private String descricao;
+    private LocalDate data;
     
-    // Getters e Setters para acesso controlado
     public void setTitulo(String titulo) { ... }
     public String getTitulo() { ... }
-    // ... outros métodos
 }
 ```
 
 ---
 
-## 🛠️ Como executar
+## Como executar
 
 1. Clone o repositório
 2. Navegue para esta branch: `git checkout "Abstracao e Encapsulamento"`
@@ -76,45 +72,27 @@ java Main
 
 ---
 
-## 📈 Próximas Branches (Linha do Tempo)
+## Conceitos Aprendidos
 
-### **Branch 2: Herança**
-- Implementação de hierarquia entre classes
-- Reutilização de código através de herança
-- Uso de `extends` e `super`
-
-### **Branch 3: Polimorfismo**
-- Métodos com comportamentos diferentes
-- Sobrescrita de métodos
-- Interfaces e implementações
-
-### **Branch 4: Projeto Completo**
-- Integração de todos os conceitos
-- Sistema completo de gerenciamento de cursos
-- Aplicação prática dos pilares da POO
-
----
-
-## 🎓 Conceitos Aprendidos
-
-### **Encapsulamento**
+### Encapsulamento
 - **O que é**: Proteção dos dados através de modificadores de acesso
 - **Como implementamos**: Atributos `private` + métodos `public` para acesso
 - **Benefício**: Controle total sobre como os dados são acessados e modificados
 
-### **Abstração**
+### Abstração
 - **O que é**: Simplificação da complexidade, mostrando apenas o essencial
 - **Como implementamos**: Interface clara através de métodos bem definidos
 - **Benefício**: Facilita o uso das classes, ocultando detalhes internos
 
+---
 
-## 📝 Notas da Branch
+## Notas da Branch
 
-Esta branch representa o **primeiro passo** no aprendizado de POO. Aqui focamos em:
+Esta branch representa o primeiro passo no aprendizado de POO. Aqui focamos em:
 - Entender como proteger dados com encapsulamento
 - Criar interfaces simples e intuitivas
 - Estabelecer boas práticas de programação
 
-**Status**: ✅ Concluído  
-**Próximo**: Herança
+**Status**: Concluído  
+**Próximo**: herança-polimorfismo-part-1
 
