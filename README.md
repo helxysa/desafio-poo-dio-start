@@ -1,71 +1,142 @@
-# 🚀 Linha do Tempo - Aprendizado POO em Java
+# Linha do Tempo - Aprendizado POO em Java
 
-## 📍 Branch Atual: **Abstração e Encapsulamento**
+## Branch Atual: Herança e Polimorfismo - Part 1
 
-Esta branch demonstra a implementação dos primeiros pilares da Programação Orientada a Objetos através de exemplos práticos em Java.
-
----
-
-## 🎯 O que está sendo implementado nesta branch
-
-### **Encapsulamento**
-- ✅ Controle de acesso aos dados através de modificadores de acesso (`private`, `public`)
-- ✅ Implementação de métodos getters e setters para manipulação segura dos atributos
-- ✅ Proteção dos dados internos das classes
-
-### **Abstração**
-- ✅ Definição clara dos comportamentos essenciais das classes
-- ✅ Ocultação de detalhes de implementação
-- ✅ Interface simples e intuitiva para uso das classes
+Esta branch demonstra a implementação dos pilares de Herança e Polimorfismo da Programação Orientada a Objetos através de exemplos práticos em Java.
 
 ---
 
-## 📁 Estrutura do Projeto (Branch Atual)
+## O que está sendo implementado nesta branch
+
+### Herança
+- Criação de hierarquia entre classes através de `extends`
+- Reutilização de código através de herança
+- Uso de classe abstrata como base (`Conteudo`)
+- Herança de atributos e métodos da classe pai
+
+### Polimorfismo
+- Métodos abstratos com implementações diferentes
+- Sobrescrita de métodos (`@Override`)
+- Polimorfismo de referência (referência da classe pai)
+- Comportamentos específicos para cada subclasse
+
+---
+
+## Estrutura do Projeto
 
 ```
 src/
 ├── br/com/dio/desafio/dominio/
-│   ├── Curso.java          ← Classe que implementa encapsulamento
-│   └── Mentoria.java       ← Classe que implementa encapsulamento
-└── Main.java               ← Demonstração do uso das classes
+│   ├── Conteudo.java        ← Classe abstrata (classe pai)
+│   ├── Curso.java           ← Classe filha que herda de Conteudo
+│   └── Mentoria.java        ← Classe filha que herda de Conteudo
+└── Main.java                ← Demonstração do uso das classes
 ```
 
-## 🔍 Exemplos Implementados
+## Exemplos Implementados
 
-### **Classe Curso**
+### Classe Abstrata Conteudo (Classe Pai)
 ```java
-public class Curso {
-    private String titulo;      // Encapsulamento: atributo privado
-    private String descricao;   // Encapsulamento: atributo privado
-    private int cargaHoraria;   // Encapsulamento: atributo privado
-    
-    // Getters e Setters para acesso controlado
-    public void setTitulo(String titulo) { ... }
-    public String getTitulo() { ... }
-    // ... outros métodos
+public abstract class Conteudo {
+
+    protected static final double XP_PADRAO = 10;
+
+    private String titulo;
+    private String descricao;
+
+    public abstract double calcularXp();
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }
 ```
 
-### **Classe Mentoria**
+### Classe Curso (Herda de Conteudo)
 ```java
-public class Mentoria {
-    private String titulo;      // Encapsulamento: atributo privado
-    private String descricao;   // Encapsulamento: atributo privado
-    private LocalDate data;     // Encapsulamento: atributo privado
-    
-    // Getters e Setters para acesso controlado
-    public void setTitulo(String titulo) { ... }
-    public String getTitulo() { ... }
-    // ... outros métodos
+public class Curso extends Conteudo {
+
+    private int cargaHoraria;
+
+    public Curso() {
+    }
+
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO + 1;
+    }
+
+    public int getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getDescricao() + '\'' +
+                ", cargaHoraria=" + cargaHoraria +
+                '}';
+    }
+}
+```
+
+### Classe Mentoria (Herda de Conteudo)
+```java
+public class Mentoria extends Conteudo {
+
+    private LocalDate data;
+
+    public Mentoria(){
+        
+    }
+
+    @Override
+    public double calcularXp(){
+        return XP_PADRAO + 20d;
+    }
+
+    public void setData(LocalDate data){
+        this.data = data;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    @Override
+    public String toString() {
+        return "Mentoria{" +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getDescricao() + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
 ```
 
 ---
 
-## 🛠️ Como executar
+## Como executar
 
 1. Clone o repositório
-2. Navegue para esta branch: `git checkout "Abstracao e Encapsulamento"`
+2. Navegue para esta branch: `git checkout "Heranca e Polimorfismo Part 1"`
 3. Execute o arquivo `Main.java` para ver os exemplos em ação
 
 ```bash
@@ -76,45 +147,66 @@ java Main
 
 ---
 
-## 📈 Próximas Branches (Linha do Tempo)
 
-### **Branch 2: Herança**
-- Implementação de hierarquia entre classes
-- Reutilização de código através de herança
-- Uso de `extends` e `super`
+## Conceitos Aprendidos
 
-### **Branch 3: Polimorfismo**
-- Métodos com comportamentos diferentes
-- Sobrescrita de métodos
-- Interfaces e implementações
+### Herança
+- **O que é**: Relacionamento "é um" entre classes, onde uma classe herda características de outra
+- **Como implementamos**: Usando `extends` para criar hierarquia de classes
+- **Benefício**: Reutilização de código e organização hierárquica
 
-### **Branch 4: Projeto Completo**
-- Integração de todos os conceitos
-- Sistema completo de gerenciamento de cursos
-- Aplicação prática dos pilares da POO
+### Classe Abstrata
+- **O que é**: Classe que não pode ser instanciada diretamente, serve como modelo
+- **Como implementamos**: Usando `abstract class` e métodos `abstract`
+- **Benefício**: Define contrato comum para classes filhas
+
+### Polimorfismo
+- **O que é**: Capacidade de um objeto se comportar de diferentes formas
+- **Como implementamos**: Métodos abstratos com implementações específicas + `@Override`
+- **Benefício**: Flexibilidade e extensibilidade do código
+
+### Sobrescrita de Métodos
+- **O que é**: Redefinição de métodos herdados da classe pai
+- **Como implementamos**: Usando `@Override` para métodos abstratos e toString
+- **Benefício**: Comportamentos específicos para cada subclasse
 
 ---
 
-## 🎓 Conceitos Aprendidos
+## Demonstração no Main.java
 
-### **Encapsulamento**
-- **O que é**: Proteção dos dados através de modificadores de acesso
-- **Como implementamos**: Atributos `private` + métodos `public` para acesso
-- **Benefício**: Controle total sobre como os dados são acessados e modificados
+### Primeira Forma - Encapsulamento e Abstração
+```java
+Curso curso1 = new Curso();
+curso1.setTitulo("Curso Java");
+curso1.setDescricao("Aprender os paradigmas da programacao com Java");
+curso1.setCargaHoraria(100);
 
-### **Abstração**
-- **O que é**: Simplificação da complexidade, mostrando apenas o essencial
-- **Como implementamos**: Interface clara através de métodos bem definidos
-- **Benefício**: Facilita o uso das classes, ocultando detalhes internos
+Mentoria mentoria = new Mentoria();
+mentoria.setTitulo("Mentoria Java");
+mentoria.setDescricao("Mentoria sobre Java e boas práticas");
+mentoria.setData(LocalDate.now());
+```
 
+### Segunda Forma - Herança e Polimorfismo
+```java
+Conteudo conteudo1 = new Curso();
+conteudo1.setTitulo("curso de heranca");
+conteudo1.setDescricao("aprender os conceitos de heranca e polimorfismo");
 
-## 📝 Notas da Branch
+Conteudo conteudo2 = new Mentoria();
+conteudo2.setTitulo("mentoria em java");
+conteudo2.setDescricao("mentoria em java");
+```
 
-Esta branch representa o **primeiro passo** no aprendizado de POO. Aqui focamos em:
-- Entender como proteger dados com encapsulamento
-- Criar interfaces simples e intuitivas
-- Estabelecer boas práticas de programação
+---
 
-**Status**: ✅ Concluído  
-**Próximo**: Herança
+## Notas da Branch
 
+Esta branch representa o segundo passo no aprendizado de POO. Aqui focamos em:
+- Entender como criar hierarquias de classes com herança
+- Implementar polimorfismo através de métodos abstratos
+- Usar sobrescrita de métodos para comportamentos específicos
+- Aplicar o conceito de "é um" na modelagem de classes
+
+**Status**: Concluído  
+**Próximo**: Polimorfismo Avançado com Interfaces
