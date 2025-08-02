@@ -3,17 +3,14 @@
 ## Sobre o Projeto
 
 Este repositório contém a implementação do **Desafio de Programação Orientada a Objetos** da Digital Innovation One, demonstrando a evolução progressiva dos conceitos de POO através de branches organizadas por etapas de aprendizado.
-=======
 # Branch Final - Integração Completa das Classes de Domínio
 
 ## Status:  Concluído
 
 Esta é a versão final do projeto, demonstrando a integração completa entre todas as classes de domínio com funcionalidades avançadas de gerenciamento de estado e relacionamentos.
->>>>>>> e181ba8efebe19af6d3ffd423d6c97872b0cfbab
 
 ## Estrutura das Classes de Domínio
 
-<<<<<<< HEAD
 ##  Estrutura de Branches
 
 ### **$ abstracao-encapsulamento**
@@ -228,14 +225,11 @@ for (Conteudo conteudo : devEu.getConteudosInscritos()) {
     System.out.println(conteudo);
 }
 ```
->>>>>>> e181ba8efebe19af6d3ffd423d6c97872b0cfbab
 
----
 
-<<<<<<< HEAD
+
 **Status Geral**: Projeto completo com todas as etapas implementadas  
 **Última Atualização**: Branch final com sistema completo funcionando
-=======
 ## Conceitos POO Aplicados
 
 1. **Herança**: `Curso` e `Mentoria` herdam de `Conteudo`
@@ -245,7 +239,6 @@ for (Conteudo conteudo : devEu.getConteudosInscritos()) {
 5. **Composição**: Classes usam collections para relacionamentos
 
 ---
->>>>>>> e181ba8efebe19af6d3ffd423d6c97872b0cfbab
 
 ## Últimas Alterações Implementadas
 
