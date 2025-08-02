@@ -1,143 +1,79 @@
-# Linha do Tempo - Aprendizado POO em Java
+# Herança e Polimorfismo - Part 1
 
-## Branch Atual: Herança e Polimorfismo - Part 1
+Implementação de hierarquia de classes e polimorfismo através de classe abstrata e métodos abstratos em Java.
 
-Esta branch demonstra a implementação dos pilares de Herança e Polimorfismo da Programação Orientada a Objetos através de exemplos práticos em Java.
+## Conceitos Implementados
 
----
-
-## O que está sendo implementado nesta branch
-
-### Herança
-- Criação de hierarquia entre classes através de `extends`
-- Reutilização de código através de herança
-- Uso de classe abstrata como base (`Conteudo`)
-- Herança de atributos e métodos da classe pai
-
-### Polimorfismo
-- Métodos abstratos com implementações diferentes
-- Sobrescrita de métodos (`@Override`)
-- Polimorfismo de referência (referência da classe pai)
-- Comportamentos específicos para cada subclasse
-
----
+| Conceito | Implementação | Benefício |
+|----------|---------------|-----------|
+| **Herança** | `extends` para criar hierarquia | Reutilização de código e organização |
+| **Classe Abstrata** | `abstract class` com métodos abstratos | Define contrato comum para subclasses |
+| **Polimorfismo** | Métodos abstratos + `@Override` | Comportamentos específicos por classe |
+| **Sobrescrita** | `@Override` em métodos herdados | Flexibilidade e extensibilidade |
 
 ## Estrutura do Projeto
 
 ```
 src/
 ├── br/com/dio/desafio/dominio/
-│   ├── Conteudo.java        ← Classe abstrata (classe pai)
-│   ├── Curso.java           ← Classe filha que herda de Conteudo
-│   └── Mentoria.java        ← Classe filha que herda de Conteudo
-└── Main.java                ← Demonstração do uso das classes
+│   ├── Conteudo.java        # Classe abstrata base
+│   ├── Curso.java           # Herda de Conteudo
+│   └── Mentoria.java        # Herda de Conteudo
+└── Main.java                # Demonstração prática
 ```
 
-## Exemplos Implementados
+## Exemplos de Código
 
-### Classe Abstrata Conteudo (Classe Pai)
+### Conteudo.java (Classe Abstrata)
 ```java
 public abstract class Conteudo {
-
     protected static final double XP_PADRAO = 10;
-
     private String titulo;
     private String descricao;
-
-    public abstract double calcularXp();
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    
+    public abstract double calcularXp();  // Método abstrato
+    
+    // Getters e Setters...
 }
 ```
 
-### Classe Curso (Herda de Conteudo)
+### Curso.java (Classe Concreta)
 ```java
 public class Curso extends Conteudo {
-
     private int cargaHoraria;
-
-    public Curso() {
-    }
-
+    
     @Override
     public double calcularXp() {
-        return XP_PADRAO + 1;
-    }
-
-    public int getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    @Override
-    public String toString() {
-        return "Curso{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                '}';
+        return XP_PADRAO + 1;  // Implementação específica
     }
 }
 ```
 
-### Classe Mentoria (Herda de Conteudo)
+### Mentoria.java (Classe Concreta)
 ```java
 public class Mentoria extends Conteudo {
-
     private LocalDate data;
-
-    public Mentoria(){
-        
-    }
-
+    
     @Override
-    public double calcularXp(){
-        return XP_PADRAO + 20d;
-    }
-
-    public void setData(LocalDate data){
-        this.data = data;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    @Override
-    public String toString() {
-        return "Mentoria{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", data=" + data +
-                '}';
+    public double calcularXp() {
+        return XP_PADRAO + 20d;  // Implementação específica
     }
 }
 ```
 
----
+## Demonstração de Polimorfismo
 
-## Como executar
+```java
+// Polimorfismo - referência da classe pai
+Conteudo conteudo1 = new Curso();
+Conteudo conteudo2 = new Mentoria();
 
-1. Clone o repositório
-2. Navegue para esta branch: `git checkout "Heranca e Polimorfismo Part 1"`
-3. Execute o arquivo `Main.java` para ver os exemplos em ação
+// Comportamentos específicos
+System.out.println(conteudo1.calcularXp());  // 11
+System.out.println(conteudo2.calcularXp());  // 30
+```
+
+## Execução
 
 ```bash
 cd src
@@ -145,68 +81,39 @@ javac Main.java
 java Main
 ```
 
----
-
-
-## Conceitos Aprendidos
+## Aprendizado
 
 ### Herança
-- **O que é**: Relacionamento "é um" entre classes, onde uma classe herda características de outra
-- **Como implementamos**: Usando `extends` para criar hierarquia de classes
-- **Benefício**: Reutilização de código e organização hierárquica
-
-### Classe Abstrata
-- **O que é**: Classe que não pode ser instanciada diretamente, serve como modelo
-- **Como implementamos**: Usando `abstract class` e métodos `abstract`
-- **Benefício**: Define contrato comum para classes filhas
+- Relacionamento "é um" entre classes
+- Reutilização de código através de `extends`
+- Acesso a atributos e métodos da classe pai
 
 ### Polimorfismo
-- **O que é**: Capacidade de um objeto se comportar de diferentes formas
-- **Como implementamos**: Métodos abstratos com implementações específicas + `@Override`
-- **Benefício**: Flexibilidade e extensibilidade do código
+- Métodos abstratos garantem implementação nas subclasses
+- Cada classe pode ter comportamento específico
+- Flexibilidade através de referências da classe pai
 
-### Sobrescrita de Métodos
-- **O que é**: Redefinição de métodos herdados da classe pai
-- **Como implementamos**: Usando `@Override` para métodos abstratos e toString
-- **Benefício**: Comportamentos específicos para cada subclasse
+### Classe Abstrata
+- Não pode ser instanciada diretamente
+- Define contrato comum através de métodos abstratos
+- Compartilha código comum entre subclasses
 
----
+## Recursos Recomendados
 
-## Demonstração no Main.java
+### Livros
+- **"Effective Java"** - Joshua Bloch
+- **"Head First Design Patterns"** - Freeman & Robson
+- **"Clean Code"** - Robert C. Martin
 
-### Primeira Forma - Encapsulamento e Abstração
-```java
-Curso curso1 = new Curso();
-curso1.setTitulo("Curso Java");
-curso1.setDescricao("Aprender os paradigmas da programacao com Java");
-curso1.setCargaHoraria(100);
+### Cursos/Vídeos
+- [Java Polimorfismo - Nélio Alves](https://www.youtube.com/watch?v=jHbj8IE80HY)
+- [Herança em Java - DevDojo](https://www.youtube.com/watch?v=9JpAO_cRhJc)
+- [POO Completo - Curso em Vídeo](https://www.youtube.com/playlist?list=PLHz_AreHm4dkqe2aR0tQK74m8SFe-aGsY)
 
-Mentoria mentoria = new Mentoria();
-mentoria.setTitulo("Mentoria Java");
-mentoria.setDescricao("Mentoria sobre Java e boas práticas");
-mentoria.setData(LocalDate.now());
-```
-
-### Segunda Forma - Herança e Polimorfismo
-```java
-Conteudo conteudo1 = new Curso();
-conteudo1.setTitulo("curso de heranca");
-conteudo1.setDescricao("aprender os conceitos de heranca e polimorfismo");
-
-Conteudo conteudo2 = new Mentoria();
-conteudo2.setTitulo("mentoria em java");
-conteudo2.setDescricao("mentoria em java");
-```
+### Documentação
+- [Oracle - Inheritance](https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html)
+- [Oracle - Abstract Methods and Classes](https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html)
 
 ---
 
-## Notas da Branch
-
-Esta branch representa o segundo passo no aprendizado de POO. Aqui focamos em:
-- Entender como criar hierarquias de classes com herança
-- Implementar polimorfismo através de métodos abstratos
-- Usar sobrescrita de métodos para comportamentos específicos
-- Aplicar o conceito de "é um" na modelagem de classes
-
-**Status**: Concluído  
-**Próximo**: Polimorfismo Avançado com Interfaces
+**Status**: Concluído | **Próximo**: `heranca-polimorfismo-part-2`
