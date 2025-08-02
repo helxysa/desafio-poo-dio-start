@@ -1,10 +1,18 @@
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.Conteudo;
+
+
 
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
+
+
+
+        /* primeira forma de fazer, pensando no encapsulamente e abstracao */
+
 
         Curso curso1 = new Curso();
 
@@ -28,6 +36,29 @@ public class Main {
 
         System.out.println(curso1);
         System.out.println(curso2);
+        System.out.println(mentoria);
+
+        
+        /* segunda forma de fazer, pensando na heranca e polimorfismo */
+        
+        Conteudo conteudo1 = new Curso();
+        conteudo1.setTitulo("curso de heranca");
+        conteudo1.setDescricao("aprender os conceitos de heranca e polimorfismo");
+
+        Conteudo conteudo2 = new Mentoria();
+        conteudo2.setTitulo("mentoria em java");
+        conteudo2.setDescricao("mentoria em java");
+
+        System.out.println(conteudo1);
+        System.out.println(conteudo2);
+
+        
+
+    }
+
+
+}
+
 
         System.out.println(mentoria);
 
@@ -35,3 +66,4 @@ public class Main {
 
 
 }
+
