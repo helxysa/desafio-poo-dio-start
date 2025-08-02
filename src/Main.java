@@ -3,13 +3,16 @@ import br.com.dio.desafio.dominio.Mentoria;
 import br.com.dio.desafio.dominio.Conteudo;
 
 
+
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
 
 
+
         /* primeira forma de fazer, pensando no encapsulamente e abstracao */
+
 
         Curso curso1 = new Curso();
 
@@ -55,3 +58,12 @@ public class Main {
 
 
 }
+
+
+        System.out.println(mentoria);
+
+    }
+
+
+}
+
