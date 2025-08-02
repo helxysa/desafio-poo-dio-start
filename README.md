@@ -103,7 +103,6 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 }
->>>>>>> e181ba8efebe19af6d3ffd423d6c97872b0cfbab
 ```
 
 ---
@@ -172,7 +171,6 @@ private Set<Dev> devsInscritos = new HashSet<>();
 ### 3. `LinkedHashSet<Conteudo>` em Bootcamp
 ```java
 private Set<Conteudo> conteudos = new LinkedHashSet<>();
->>>>>>> e181ba8efebe19af6d3ffd423d6c97872b0cfbab
 ```
 
 ---
